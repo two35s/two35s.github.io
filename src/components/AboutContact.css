@@ -1,0 +1,125 @@
+.about-contact {
+    padding-top: 8rem;
+    background-color: var(--bg-secondary);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    margin-top: 4rem;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 8rem;
+}
+
+.about-text {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.footer {
+    border-top: 1px solid var(--border-color);
+    padding: 6rem 0 3rem;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-cta h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    max-width: 800px;
+}
+
+.email-link {
+    display: inline-block;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--accent);
+    font-weight: 700;
+    position: relative;
+    margin-bottom: 6rem;
+    transition: var(--transition-normal);
+}
+
+.email-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-normal);
+}
+
+.email-link:hover {
+    opacity: 0.8;
+}
+
+.email-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.footer-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 3rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
+
+.social-links a:hover {
+    color: var(--bg-primary);
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    .about-custom {
+        padding-top: 4rem;
+    }
+
+    .about-text {
+        font-size: 1.125rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
