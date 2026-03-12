@@ -25,3 +25,7 @@ dist-ssr
 .env
 .env
 .env
+
+# Markdown files (except readme)
+*.md
+!readme.md
