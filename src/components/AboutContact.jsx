@@ -8,10 +8,8 @@ const AboutContact = () => {
     const containerRef = useRef(null);
 
     return (
-        <section className="about-contact" id="about">
-            <div className="container">
-
-            </div>
+        <section className="about-contact" id="contact">
+            {/* The "About" content has moved to a dedicated page /about */}
 
             <footer className="footer" id="contact" ref={containerRef}>
                 <div className="container footer-container">

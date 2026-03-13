@@ -9,6 +9,7 @@ import './App.css';
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/Projects'));
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
+const About = lazy(() => import('./pages/About'));
 const AboutContact = lazy(() => import('./components/AboutContact'));
 const Admin = lazy(() => import('./pages/Admin'));
 
@@ -24,6 +25,7 @@ function AppContent({ theme, toggleTheme }) {
         <Suspense fallback={<main className="route-loading container">Loading...</main>}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/admin" element={<Admin />} />

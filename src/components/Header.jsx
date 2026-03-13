@@ -46,8 +46,12 @@ const Header = ({ theme, toggleTheme }) => {
                     >
                         Projects
                     </Link>
-                    <button type="button" className="nav-scroll-btn" onClick={() => scrollToSection('about')}>About</button>
-                    <button type="button" className="nav-scroll-btn btn-primary-outline" onClick={() => scrollToSection('contact')}>Let's Talk</button>
+                    <Link
+                        to="/about"
+                        onClick={() => setMobileMenuOpen(false)}
+                    >
+                        About
+                    </Link>
                 </nav>
 
                 <div className="header-actions">
