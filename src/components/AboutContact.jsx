@@ -10,15 +10,7 @@ const AboutContact = () => {
     return (
         <section className="about-contact" id="about">
             <div className="container">
-                <div className="about-content">
-                    <h2 className="section-title">Beyond the Canvas</h2>
-                    <p className="about-text">
-                        I am a multi-disciplinary designer with over 5 years of experience in brand identity, packaging, and digital experiences. My approach is rooted in simplicity, strategy, and aesthetics. I believe that good design is not just about how it looks, but how it works and communicates.
-                    </p>
-                    <p className="about-text">
-                        When I'm not designing, you can find me exploring typography, visiting art galleries, or experimenting with analog photography.
-                    </p>
-                </div>
+
             </div>
 
             <footer className="footer" id="contact" ref={containerRef}>
