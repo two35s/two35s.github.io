@@ -13,6 +13,7 @@ const EMPTY_PROJECT = {
   technologies: [],
   live_link: '',
   github_link: '',
+  content: '',
 };
 
 const fetchAllProjects = () => supabase.from('projects').select('*').order('id');
@@ -307,6 +308,16 @@ const ProjectForm = ({ form, techInput, setTechInput, updateField }) => (
     <label>
       GitHub Link
       <input value={form.github_link || ''} onChange={e => updateField('github_link', e.target.value)} placeholder="https://github.com/..." />
+    </label>
+    <label className="full-width">
+      Project Content (Markdown supported)
+      <textarea
+        className="content-textarea"
+        value={form.content || ''}
+        onChange={e => updateField('content', e.target.value)}
+        rows={14}
+        placeholder="Write a detailed breakdown of this project. Markdown is supported (## headings, **bold**, - lists, code blocks, etc.)"
+      />
     </label>
   </div>
 );

@@ -287,3 +287,12 @@
     align-items: flex-start;
   }
 }
+
+/* Markdown content textarea */
+.admin-form-grid .content-textarea {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 220px;
+}

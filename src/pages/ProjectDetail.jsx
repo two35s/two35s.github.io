@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Star, Link2, Share2, Code2 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import { supabase, parseTechnologies } from '../lib/supabase';
 import './ProjectDetail.css';
 
@@ -157,6 +158,12 @@ const ProjectDetail = () => {
                     {project.image_url && (
                         <div className="pd-hero">
                             <img src={project.image_url} alt={project.title} className="pd-hero-image" />
+                        </div>
+                    )}
+
+                    {project.content && (
+                        <div className="project-content">
+                            <ReactMarkdown>{project.content}</ReactMarkdown>
                         </div>
                     )}
                 </article>
