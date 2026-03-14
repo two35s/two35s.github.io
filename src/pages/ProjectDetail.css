@@ -236,7 +236,7 @@
 }
 
 /* ── Markdown Project Content ── */
-.project-content {
+.project-detail-markdown {
     max-width: 720px;
     margin: 3rem 0;
     color: var(--text-secondary, #ccc);
@@ -244,33 +244,33 @@
     line-height: 1.8;
 }
 
-.project-content h1,
-.project-content h2,
-.project-content h3 {
+.project-detail-markdown h1,
+.project-detail-markdown h2,
+.project-detail-markdown h3 {
     color: var(--text-primary, #fff);
     margin-top: 2.5rem;
     margin-bottom: 0.75rem;
     font-weight: 600;
 }
 
-.project-content h2 { font-size: 1.4rem; }
-.project-content h3 { font-size: 1.15rem; }
+.project-detail-markdown h2 { font-size: 1.4rem; }
+.project-detail-markdown h3 { font-size: 1.15rem; }
 
-.project-content p {
+.project-detail-markdown p {
     margin-bottom: 1.2rem;
 }
 
-.project-content ul,
-.project-content ol {
+.project-detail-markdown ul,
+.project-detail-markdown ol {
     padding-left: 1.5rem;
     margin-bottom: 1.2rem;
 }
 
-.project-content li {
+.project-detail-markdown li {
     margin-bottom: 0.4rem;
 }
 
-.project-content code {
+.project-detail-markdown code {
     background: #1a1a1a;
     padding: 2px 6px;
     border-radius: 4px;
@@ -279,7 +279,7 @@
     color: #cbf74e;
 }
 
-.project-content pre {
+.project-detail-markdown pre {
     background: #111;
     border: 1px solid var(--border-color, #222);
     border-radius: 8px;
@@ -288,13 +288,13 @@
     margin-bottom: 1.5rem;
 }
 
-.project-content pre code {
+.project-detail-markdown pre code {
     background: none;
     padding: 0;
     color: #cbf74e;
 }
 
-.project-content blockquote {
+.project-detail-markdown blockquote {
     border-left: 3px solid #cbf74e;
     margin: 0 0 1.2rem;
     padding: 0.5rem 1rem;
@@ -302,28 +302,28 @@
     font-style: italic;
 }
 
-.project-content a {
+.project-detail-markdown a {
     color: #cbf74e;
     text-decoration: underline;
 }
 
-.project-content hr {
+.project-detail-markdown hr {
     border: none;
     border-top: 1px solid var(--border-color, #222);
     margin: 2rem 0;
 }
 
-[data-theme='light'] .project-content code {
+[data-theme='light'] .project-detail-markdown code {
     background: #f0f4e8;
     color: #3d6b00;
 }
 
-[data-theme='light'] .project-content pre {
+[data-theme='light'] .project-detail-markdown pre {
     background: #f7f9f2;
     border-color: #dde;
 }
 
-[data-theme='light'] .project-content pre code {
+[data-theme='light'] .project-detail-markdown pre code {
     background: none;
     color: #3d6b00;
 }

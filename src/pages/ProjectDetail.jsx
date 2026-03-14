@@ -162,7 +162,7 @@ const ProjectDetail = () => {
                     )}
 
                     {project.content && (
-                        <div className="project-content">
+                        <div className="project-detail-markdown">
                             <ReactMarkdown>{project.content}</ReactMarkdown>
                         </div>
                     )}
