@@ -8,7 +8,7 @@
     Permissions-Policy = "geolocation=(), camera=(), microphone=(), payment=()"
     # Comprehensive Content Security Policy (CSP)
     # Includes Supabase and common external image/media sources
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://cbblnjbdzazaxfkuufit.supabase.co https://*.supabase.co; font-src 'self' data: https:; frame-src 'self'; object-src 'none'; media-src 'self' https:;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; connect-src 'self' https://cbblnjbdzazaxfkuufit.supabase.co https://*.supabase.co; font-src 'self' data: https: https://fonts.gstatic.com; frame-src 'self'; object-src 'none'; media-src 'self' https:;"
 
 [[redirects]]
   from = "/*"
