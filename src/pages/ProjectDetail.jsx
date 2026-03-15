@@ -16,6 +16,11 @@ const ProjectDetail = () => {
 
     useEffect(() => {
         const fetchProject = async () => {
+            if (!supabase) {
+                setError('Supabase configuration is missing.');
+                setLoading(false);
+                return;
+            }
             try {
                 const { data, error: dbError } = await supabase
                     .from('projects')

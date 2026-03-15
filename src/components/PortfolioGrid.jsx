@@ -12,6 +12,11 @@ const PortfolioGrid = ({ limit = null }) => {
 
     useEffect(() => {
         const fetchProjects = async () => {
+            if (!supabase) {
+                setError('Supabase configuration is missing. Please check environment variables.');
+                setLoading(false);
+                return;
+            }
             setLoading(true);
             setError('');
             try {

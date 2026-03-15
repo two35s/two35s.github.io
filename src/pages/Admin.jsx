@@ -36,12 +36,17 @@ const Admin = () => {
   const [feedback, setFeedback] = useState('');
 
   useEffect(() => {
+    if (!supabase) return;
     supabase.auth.getSession().then(({ data: { session } }) => setSession(session));
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => setSession(session));
     return () => subscription.unsubscribe();
   }, []);
 
   const refreshProjects = async () => {
+    if (!supabase) {
+      showFeedback('Supabase client not initialized.');
+      return;
+    }
     setLoading(true);
     const { data, error } = await fetchAllProjects();
     if (!error) setProjects(data || []);
@@ -49,7 +54,7 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    if (!session) return;
+    if (!session || !supabase) return;
     let cancelled = false;
     fetchAllProjects().then(({ data, error }) => {
       if (cancelled) return;
@@ -61,6 +66,10 @@ const Admin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    if (!supabase) {
+      setLoginError('Supabase configuration missing.');
+      return;
+    }
     setLoginError('');
     setLoginLoading(true);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
