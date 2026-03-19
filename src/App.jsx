@@ -29,6 +29,11 @@ function AppContent({ theme, toggleTheme }) {
     setShowIntro(false);
   };
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <ClickSpark sparkColor={sparkColor} sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
       <div className="app">
