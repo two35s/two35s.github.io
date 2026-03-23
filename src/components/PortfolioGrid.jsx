@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, ExternalLink } from 'lucide-react';
 import { supabase, parseTechnologies } from '../lib/supabase';
+import CyberHumanDetection from './CyberHumanDetection';
 import './PortfolioGrid.css';
 
 const PortfolioGrid = ({ limit = null }) => {
@@ -57,6 +58,18 @@ const PortfolioGrid = ({ limit = null }) => {
         e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
     };
 
+    const renderProjectMedia = (project) => {
+        const isCyberAnimation = 
+            project.image_url === 'animation:cyber-human' || 
+            project.title?.toLowerCase().includes('human detection system');
+
+        if (isCyberAnimation) {
+            return <CyberHumanDetection />;
+        }
+
+        return <img src={project.image_url} alt={project.title} loading="lazy" />;
+    };
+
     return (
         <section className="portfolio" id="work">
             <div className="container">
@@ -98,7 +111,7 @@ const PortfolioGrid = ({ limit = null }) => {
                                         onMouseMove={handleMouseMove}
                                     >
                                         <div className="project-image-wrapper">
-                                            <img src={project.image_url} alt={project.title} loading="lazy" />
+                                            {renderProjectMedia(project)}
                                         </div>
                                         <div className="project-content">
                                             <h3 className="project-title">{project.title}</h3>
