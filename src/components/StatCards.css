@@ -1,0 +1,82 @@
+.stat-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 420px;
+  margin: 1.5rem auto 0;
+  padding: 0 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.card-spotlight.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.9rem 1rem;
+  background: rgba(17, 17, 17, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  opacity: 0;
+  animation: statFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: inherit;
+  transition: transform var(--transition-normal), border-color var(--transition-fast);
+}
+
+.card-spotlight.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.card-spotlight.stat-card.accent {
+  border-color: rgba(199, 255, 50, 0.15);
+  background: rgba(199, 255, 50, 0.04);
+}
+
+.card-spotlight.stat-card.accent:hover {
+  border-color: rgba(199, 255, 50, 0.3);
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.stat-card.accent .stat-value {
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@keyframes statFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-cards {
+    max-width: 320px;
+    gap: 0.4rem;
+  }
+  .stat-card {
+    padding: 0.75rem 0.85rem;
+  }
+}

@@ -16,88 +16,88 @@
   transform: translateY(-100%);
 }
 
+.intro-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.intro-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(ellipse 40% 40% at 30% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 70% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 50% 50%, rgba(99, 102, 241, 0.03) 0%, transparent 70%);
+  animation: bg-shift 6s ease-in-out infinite alternate;
+}
+
+@keyframes bg-shift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(-2%, -1%) rotate(2deg); }
+}
+
 .intro-content {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .intro-letters {
-  display: flex;
-  align-items: center;
   font-size: 5rem;
   font-weight: 800;
-  overflow: hidden;
   line-height: 1;
+  letter-spacing: 0.05em;
+  height: 1.1em;
+  display: flex;
+  align-items: center;
 }
 
-.intro-letters span {
-  display: inline-block;
-  transform: translateY(100%);
-  animation: reveal-letter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.intro-letter-revealed {
+  color: #ffffff;
 }
 
-.intro-letters span:nth-child(1) { animation-delay: 0.2s; }
-.intro-letters span:nth-child(2) { animation-delay: 0.4s; color: #c8ff00; margin: 0 0.5rem; }
-.intro-letters span:nth-child(3) { animation-delay: 0.6s; }
-
-@keyframes reveal-letter {
-  to { transform: translateY(0); }
+.intro-letter-encrypted {
+  color: rgba(99, 102, 241, 0.4);
 }
 
 .intro-subtitle {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.5em;
-  color: #a1a1aa;
+  color: rgba(255, 255, 255, 0.5);
   opacity: 0;
-  animation: fade-in 1s ease forwards 1s;
+  animation: fade-in 0.8s ease forwards 0.8s;
 }
 
 @keyframes fade-in {
   to { opacity: 1; }
 }
 
-.intro-progress-container {
+.intro-bottom {
   position: absolute;
-  bottom: 0;
+  bottom: 2.5rem;
   left: 0;
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.intro-progress-bar {
-  height: 100%;
-  background: #c8ff00;
-  width: 0%;
-  animation: progress-width 2.8s linear forwards;
-}
-
-@keyframes progress-width {
-  to { width: 100%; }
-}
-
-.intro-counter {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  font-family: 'Inter', monospace;
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: #ffffff;
-  opacity: 0.5;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  z-index: 1;
 }
 
 .intro-skip {
-  position: absolute;
-  bottom: 2rem;
-  left: 2rem;
   background: none;
   border: none;
-  color: #52525b;
+  color: rgba(255, 255, 255, 0.25);
   cursor: pointer;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -107,17 +107,49 @@
 }
 
 .intro-skip:hover {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.intro-counter {
+  font-family: 'Inter', monospace;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.05em;
+}
+
+.intro-counter-suffix {
+  font-size: 0.85rem;
+  opacity: 0.5;
+  margin-left: 0.1em;
+}
+
+.intro-progress-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.intro-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+  transition: width 0.05s linear;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .intro-letters span,
-  .intro-subtitle,
   .intro-overlay {
-    animation: none;
-    transform: none;
     transition: none;
+  }
+  .intro-subtitle {
+    animation: none;
     opacity: 1;
+  }
+  .intro-bg::before {
+    animation: none;
   }
 }
 
@@ -126,7 +158,11 @@
     font-size: 3rem;
   }
   .intro-subtitle {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 0.3em;
+  }
+  .intro-bottom {
+    padding: 0 1.25rem;
+    bottom: 2rem;
   }
 }

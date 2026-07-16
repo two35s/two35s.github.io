@@ -1,78 +1,102 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import InteractiveHoverButton from './InteractiveHoverButton';
-import { prefetchProjectsRoute } from '../lib/routePrefetch';
+import MagneticButton from './MagneticButton';
+import StatCards from './StatCards';
+import SoftAurora from './ReactBits/SoftAurora/SoftAurora';
+import ShinyText from './ReactBits/ShinyText/ShinyText';
 import './Hero.css';
 
-const PixelBlast = lazy(() => import('./PixelBlast'));
+const CyberNetwork = lazy(() => import('./CyberNetwork'));
 
 const Hero = () => {
-    const scrollToContact = () => {
-        const section = document.getElementById('contact');
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const handleScroll = () => {
+      const rect = section.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, -rect.top / (rect.height * 0.5)));
+      section.style.setProperty('--scroll-progress', progress);
     };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    const handleProjectsIntent = () => {
-        prefetchProjectsRoute().catch(() => {});
-    };
+  return (
+    <section ref={sectionRef} className="hero" id="home">
+      <div className="hero-bg">
+        <div className="hero-aurora">
+          <SoftAurora
+            speed={0.4}
+            scale={1.8}
+            brightness={0.6}
+            color1="#C7FF32"
+            color2="#00d4ff"
+            noiseFrequency={1.8}
+            noiseAmplitude={0.8}
+            bandSpread={0.7}
+            enableMouseInteraction={true}
+            mouseInfluence={0.3}
+          />
+        </div>
+        <div className="hero-grid" />
+      </div>
 
-    return (
-        <section className="hero" id="home">
-            <div className="container hero-container">
-                <div className="hero-content">
-                    <h2 className="hero-subtitle">Visual Designer & Art Director</h2>
-                    <h1 className="hero-title">
-                        Crafting Digital
-                        <span className="text-accent"> Experiences.</span>
-                    </h1>
-                    <p className="hero-description">
-                        Hi, I’m a passionate graphic designer creating beautiful, functional, and minimal brand identities and digital experiences.
-                    </p>
-                    <div className="hero-cta">
-                        <InteractiveHoverButton
-                            as={Link}
-                            to="/projects"
-                            onMouseEnter={handleProjectsIntent}
-                            onFocus={handleProjectsIntent}
-                            onTouchStart={handleProjectsIntent}
-                        >
-                            View Projects
-                        </InteractiveHoverButton>
-                        <button type="button" onClick={scrollToContact} className="btn-secondary">
-                            Contact Me
-                        </button>
-                    </div>
-                </div>
+      <div className="container hero-inner">
+        <div className="hero-content">
+          <div className="hero-label-wrapper">
+            <span className="hero-label">
+              <span className="hero-label-dot" />
+              DEVELOPER &bull; SECURITY RESEARCHER &bull; DESIGNER
+            </span>
+          </div>
 
-                {/* Decorative elements for dynamic feel */}
-                <div className="hero-visual">
-                    <Suspense fallback={<div className="hero-visual-fallback" aria-hidden="true" />}>
-                        <PixelBlast
-                            variant="square"
-                            pixelSize={4}
-                            color="#d4ff36"
-                            patternScale={2}
-                            patternDensity={1}
-                            pixelSizeJitter={0}
-                            enableRipples={true}
-                            rippleSpeed={0.4}
-                            rippleThickness={0.12}
-                            rippleIntensityScale={1.5}
-                            liquid={false}
-                            liquidStrength={0.12}
-                            liquidRadius={1.2}
-                            liquidWobbleSpeed={5}
-                            speed={0.5}
-                            edgeFade={0.25}
-                            transparent={true}
-                        />
-                    </Suspense>
-                </div>
-            </div>
-        </section>
-    );
+          <h1 className="hero-title">
+            <span className="hero-line hero-line-1">Building</span>
+            <span className="hero-line hero-line-2">
+              <span className="text-accent-word">
+                <ShinyText
+                  text="Secure"
+                  color="#C7FF32"
+                  shineColor="#ffffff"
+                  spread={90}
+                  speed={3}
+                  direction="left"
+                  yoyo={true}
+                  pauseOnHover={true}
+                />
+              </span>
+            </span>
+            <span className="hero-line hero-line-3">Digital Products.</span>
+          </h1>
+
+          <p className="hero-desc">
+            I build secure, modern, high-performance digital experiences 
+            focused on design, automation and cybersecurity.
+          </p>
+
+          <div className="hero-actions">
+            <MagneticButton as={Link} to="/projects" variant="primary" icon="arrow">
+              Explore Projects
+            </MagneticButton>
+            <MagneticButton href="/resume.pdf" variant="secondary" icon="download">
+              Download Resume
+            </MagneticButton>
+          </div>
+        </div>
+
+        <div className="hero-visual">
+          <div className="hero-network">
+            <Suspense fallback={<div className="hero-network-fallback" />}>
+              <CyberNetwork accent="#C7FF32" />
+            </Suspense>
+          </div>
+          <StatCards />
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Hero;

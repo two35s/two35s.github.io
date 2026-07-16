@@ -1,0 +1,107 @@
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Primary variant - glass morphism */
+.btn-primary {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(199, 255, 50, 0.25), rgba(199, 255, 50, 0.05), rgba(255, 255, 255, 0.08));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  border-color: rgba(199, 255, 50, 0.25);
+  box-shadow: 0 0 30px rgba(199, 255, 50, 0.08), inset 0 0 30px rgba(199, 255, 50, 0.03);
+  background: rgba(199, 255, 50, 0.04);
+}
+
+/* Secondary variant - minimal text */
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.85rem 0.5rem;
+  gap: 0.4rem;
+}
+
+.btn-secondary:hover {
+  color: var(--text-primary);
+}
+
+.btn-secondary .btn-icon {
+  transition: transform var(--transition-fast);
+}
+
+.btn-secondary:hover .btn-icon {
+  transform: translateY(1px) translateX(2px);
+}
+
+/* Icon */
+.btn-icon {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.btn-primary:hover .btn-icon {
+  transform: translateX(3px);
+}
+
+/* Ripple */
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(199, 255, 50, 0.2);
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  animation: rippleAnim 0.6s ease-out forwards;
+}
+
+@keyframes rippleAnim {
+  from {
+    transform: scale(0);
+    opacity: 1;
+  }
+  to {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
