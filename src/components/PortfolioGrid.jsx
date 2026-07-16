@@ -47,6 +47,7 @@ const PortfolioGrid = ({ limit = null }) => {
     const formatDate = (dateString) => {
         if (!dateString) return '';
         const date = new Date(dateString);
+        if (isNaN(date.getTime())) return '';
         return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
     };
 
@@ -92,7 +93,20 @@ const PortfolioGrid = ({ limit = null }) => {
                     </div>
                 </div>
 
-                {loading && <p className="portfolio-status">Loading projects...</p>}
+                {loading && (
+                    <div className="portfolio-grid">
+                        {[1, 2, 3].map((n) => (
+                            <div key={n} className="project-card" aria-hidden="true">
+                                <div className="project-image-wrapper skeleton" />
+                                <div className="project-content">
+                                    <div className="skeleton skeleton-title" />
+                                    <div className="skeleton skeleton-tags" />
+                                    <div className="skeleton skeleton-desc" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
                 {error && <p className="portfolio-status error">{error}</p>}
 
                 {!loading && !error && (

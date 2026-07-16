@@ -4,7 +4,7 @@ import PortfolioGrid from '../components/PortfolioGrid';
 
 const Home = () => {
     return (
-        <main>
+        <main id="main-content">
             <Hero />
             <PortfolioGrid limit={3} />
         </main>

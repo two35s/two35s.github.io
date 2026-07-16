@@ -160,7 +160,7 @@ const Admin = () => {
 
   if (!session) {
     return (
-      <main className="admin-page">
+      <main className="admin-page" id="main-content">
         <div className="admin-login-card">
           <h1>Admin Login</h1>
           <form onSubmit={handleLogin}>
@@ -177,7 +177,7 @@ const Admin = () => {
   }
 
   return (
-    <main className="admin-page">
+    <main className="admin-page" id="main-content">
       <div className="admin-container">
         <div className="admin-header">
           <h1>Admin Dashboard</h1>

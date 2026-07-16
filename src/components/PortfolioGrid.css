@@ -255,6 +255,39 @@
     }
 }
 
+.skeleton {
+    background: var(--border-color);
+    border-radius: 8px;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-title {
+    height: 1.25rem;
+    width: 70%;
+    margin-bottom: 1rem;
+}
+
+.skeleton-tags {
+    height: 1.5rem;
+    width: 40%;
+    margin-bottom: 1rem;
+}
+
+.skeleton-desc {
+    height: 3rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.project-image-wrapper.skeleton {
+    aspect-ratio: 16 / 10;
+}
+
+@keyframes skeleton-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
 .view-all-container {
     display: flex;
     justify-content: center;

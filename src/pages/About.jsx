@@ -5,7 +5,7 @@ import './About.css';
 
 const About = () => {
     return (
-        <main className="about-page">
+        <main className="about-page" id="main-content">
             <div className="container">
                 <header className="about-header">
                     <Link to="/" className="back-link">
@@ -96,7 +96,7 @@ const About = () => {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                                    <a href="https://www.linkedin.com/in/youssef-baaziz-180a38334/" target="_blank" rel="noopener noreferrer" className="social-link">
                                         <Linkedin size={18} /> LinkedIn
                                     </a>
                                 </li>

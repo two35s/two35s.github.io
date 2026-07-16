@@ -5,7 +5,7 @@ import './Projects.css';
 
 const Projects = () => {
     return (
-        <main className="projects-page">
+        <main className="projects-page" id="main-content">
             <div className="container">
                 <Link to="/" className="back-home-link">← Back to Home</Link>
             </div>

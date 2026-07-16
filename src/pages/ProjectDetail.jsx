@@ -48,12 +48,16 @@ const ProjectDetail = () => {
     };
 
     const handleCopyLink = () => {
-        navigator.clipboard.writeText(window.location.href).catch(() => {});
+        navigator.clipboard.writeText(window.location.href);
     };
 
     const handleShare = async () => {
         if (navigator.share) {
-            await navigator.share({ title: project?.title, url: window.location.href }).catch(() => {});
+            try {
+                await navigator.share({ title: project?.title, url: window.location.href });
+            } catch {
+                // user cancelled or share API not available
+            }
         } else {
             handleCopyLink();
         }
@@ -61,7 +65,7 @@ const ProjectDetail = () => {
 
     if (loading) {
         return (
-            <main className="project-detail-page">
+            <main className="project-detail-page" id="main-content">
                 <div className="pd-container">
                     <Link to="/projects" className="pd-back-link"><ArrowLeft size={16} /> Back to Projects</Link>
                     <div className="loading">Loading project...</div>
@@ -72,7 +76,7 @@ const ProjectDetail = () => {
 
     if (error || !project) {
         return (
-            <main className="project-detail-page">
+            <main className="project-detail-page" id="main-content">
                 <div className="pd-container">
                     <Link to="/projects" className="pd-back-link"><ArrowLeft size={16} /> Back to Projects</Link>
                     <div className="error">Project not found</div>
@@ -86,7 +90,7 @@ const ProjectDetail = () => {
     const extraTagsCount = tags.length > 3 ? tags.length - 3 : 0;
 
     return (
-        <main className="project-detail-page">
+        <main className="project-detail-page" id="main-content">
             <div className="pd-container">
                 {/* Top Action Bar */}
                 <div className="pd-top-bar">
@@ -174,7 +178,7 @@ const ProjectDetail = () => {
                             <ReactMarkdown
                                 remarkPlugins={[remarkGfm]}
                                 components={{
-                                    code({ node, inline, className, children, ...props }) {
+                                    code({ inline, className, children, ...props }) {
                                         const match = /language-(\w+)/.exec(className || '');
                                         return !inline && match ? (
                                             <SyntaxHighlighter

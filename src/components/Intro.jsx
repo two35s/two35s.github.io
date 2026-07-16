@@ -6,12 +6,20 @@ const Intro = ({ onDone }) => {
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    // Lock scroll
     document.body.style.overflow = 'hidden';
 
-    // Timer for the progress bar and counter (2.8s)
+    let exitTimer;
+
+    const handleExit = () => {
+      clearInterval(timer);
+      setIsExiting(true);
+      exitTimer = setTimeout(() => {
+        onDone();
+      }, 800);
+    };
+
     const duration = 2800;
-    const interval = 28; // Update every 28ms for ~100 steps
+    const interval = 28;
     const startTime = Date.now();
 
     const timer = setInterval(() => {
@@ -21,27 +29,23 @@ const Intro = ({ onDone }) => {
       setProgress(Math.floor(currentProgress));
 
       if (currentProgress >= 100) {
-        clearInterval(timer);
         handleExit();
       }
     }, interval);
 
     return () => {
       clearInterval(timer);
+      clearTimeout(exitTimer);
       document.body.style.overflow = '';
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleExit = () => {
+  const handleSkip = () => {
     setIsExiting(true);
-    // Wait for the CSS transition (0.8s) before unmounting
     setTimeout(() => {
       onDone();
     }, 800);
-  };
-
-  const handleSkip = () => {
-    handleExit();
   };
 
   return (

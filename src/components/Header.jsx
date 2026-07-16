@@ -13,17 +13,20 @@ const Header = ({ theme, toggleTheme }) => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
         };
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const scrollToSection = (sectionId) => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        setMobileMenuOpen(false);
-    };
+    useEffect(() => {
+        if (!mobileMenuOpen) return;
+        const handleClickOutside = (e) => {
+            if (!e.target.closest('.header-content')) {
+                setMobileMenuOpen(false);
+            }
+        };
+        document.addEventListener('click', handleClickOutside);
+        return () => document.removeEventListener('click', handleClickOutside);
+    }, [mobileMenuOpen]);
 
     const handleProjectsIntent = () => {
         prefetchProjectsRoute().catch(() => {});

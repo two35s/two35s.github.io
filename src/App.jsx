@@ -39,7 +39,7 @@ function AppContent({ theme, toggleTheme }) {
       <div className="app">
         {showIntro && <Intro onDone={handleIntroDone} />}
         {!isAdmin && <Header theme={theme} toggleTheme={toggleTheme} />}
-        <Suspense fallback={<main className="route-loading container">Loading...</main>}>
+        <Suspense fallback={<main className="route-loading container" id="main-content">Loading...</main>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
