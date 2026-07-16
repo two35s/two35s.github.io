@@ -1,12 +1,10 @@
-import { lazy, Suspense, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import MagneticButton from './MagneticButton';
 import StatCards from './StatCards';
 import SoftAurora from './ReactBits/SoftAurora/SoftAurora';
 import ShinyText from './ReactBits/ShinyText/ShinyText';
 import './Hero.css';
-
-const CyberNetwork = lazy(() => import('./CyberNetwork'));
 
 const Hero = () => {
   const sectionRef = useRef(null);
@@ -87,11 +85,6 @@ const Hero = () => {
         </div>
 
         <div className="hero-visual">
-          <div className="hero-network">
-            <Suspense fallback={<div className="hero-network-fallback" />}>
-              <CyberNetwork accent="#C7FF32" />
-            </Suspense>
-          </div>
           <StatCards />
         </div>
       </div>
